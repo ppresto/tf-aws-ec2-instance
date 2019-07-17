@@ -1,4 +1,3 @@
-//--------------------------------------------------------------------
 // Modules
 module "instance_module" {
   source  = "app.terraform.io/ppresto_ptfe/instance-module/aws"
