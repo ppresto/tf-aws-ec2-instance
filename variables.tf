@@ -1,5 +1,5 @@
 variable "namespace" {
-  description = "default: us-west-2"
+  description = "Enter your name or unique description here (default: your-project-name)"
   default     = "your-project-name"
 }
 
@@ -9,12 +9,12 @@ variable "region" {
 }
 
 variable "public" {
-  description = "Should instance be accessibly from outside (Boolean)"
+  description = "Instance is accessibly from outside (default: true)"
   default     = true
 }
 
 variable "instance_type" {
-  description = "instance size"
+  description = "instance size (default: t2.micro)"
   type        = "string"
   default     = "t2.micro"
 }
