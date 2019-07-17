@@ -1,8 +1,19 @@
+//--------------------------------------------------------------------
+// Variables
+
+
+
+//--------------------------------------------------------------------
 // Modules
 module "instance_module" {
   source  = "app.terraform.io/ppresto_ptfe/instance-module/aws"
-  version = "1.0.3-k-cidr"
+  version = "1.0.1"
 
-  egress_cidr_block = "0.0.0.0/0"
-  ingress_cidr_block = "157.131.174.226/32"
+  key_name = "${module.ssh_keypair_module.name}"
+  region = "us-west-2"
+}
+
+module "ssh_keypair_module" {
+  source  = "app.terraform.io/ppresto_ptfe/ssh-keypair-module/aws"
+  version = "0.2.1"
 }
