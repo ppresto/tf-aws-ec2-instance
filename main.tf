@@ -4,26 +4,26 @@ locals {
 
 # PROVIDER CONFIGURATION - AWS
 provider "aws" {
-  region     = "${var.region}"
+  region = "${var.region}"
 }
 
 # RESOURCE CONFIGURATION - AWS
 resource "aws_instance" "main" {
-  ami           = "${data.aws_ami.ubuntu.id}"
-  instance_type = "m5.large"
-  key_name = "${var.key_name}"
+  ami                         = "${data.aws_ami.ubuntu.id}"
+  instance_type               = "m5.large"
+  key_name                    = "${var.key_name}"
   associate_public_ip_address = true
-  vpc_security_group_ids = ["${aws_security_group.main.id}"]
-  depends_on = ["aws_security_group.main"]
+  vpc_security_group_ids      = ["${aws_security_group.main.id}"]
+  depends_on                  = ["aws_security_group.main"]
 
   root_block_device {
     volume_size = "60"
   }
 
   tags {
-    Name = "${local.namespace} instance"
+    Name  = "${local.namespace} instance"
     owner = "youremail@email.com"
-    TTL = 24
+    TTL   = 24
   }
 }
 
@@ -53,7 +53,7 @@ resource "aws_vpc" "main" {
 }
 
 resource "aws_security_group" "main" {
-  name = "${local.namespace}-sg"
+  name        = "${local.namespace}-sg"
   description = "${local.namespace} security group"
 
   ingress {
@@ -90,4 +90,13 @@ resource "aws_security_group" "main" {
     to_port     = 0
     cidr_blocks = ["0.0.0.0/0"]
   }
+}
+
+module "ssh_keypair_module" {
+  source  = "app.terraform.io/ppresto_ptfe/ssh-keypair-module/aws"
+  version = "0.2.1"
+}
+
+output "public_ip" {
+  value = "${module.instance_module.public_ip}"
 }
