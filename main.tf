@@ -11,7 +11,7 @@ provider "aws" {
 resource "aws_instance" "main" {
   ami                         = "${data.aws_ami.ubuntu.id}"
   instance_type               = "m5.large"
-  key_name                    = "${var.key_name}"
+  key_name                    = "${module.ssh_keypair_module.name}"
   associate_public_ip_address = true
   vpc_security_group_ids      = ["${aws_security_group.main.id}"]
   depends_on                  = ["aws_security_group.main"]
@@ -95,8 +95,4 @@ resource "aws_security_group" "main" {
 module "ssh_keypair_module" {
   source  = "app.terraform.io/ppresto_ptfe/ssh-keypair-module/aws"
   version = "0.2.1"
-}
-
-output "public_ip" {
-  value = "${module.instance_module.public_ip}"
 }
