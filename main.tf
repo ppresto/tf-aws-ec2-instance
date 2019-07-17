@@ -1,7 +1,3 @@
-locals {
-  namespace = "your-name-here"
-}
-
 # PROVIDER CONFIGURATION - AWS
 provider "aws" {
   region = "${var.region}"
@@ -21,7 +17,7 @@ resource "aws_instance" "main" {
   }
 
   tags {
-    Name  = "${local.namespace} instance"
+    Name  = "${var.namespace} instance"
     owner = "youremail@email.com"
     TTL   = 24
   }
@@ -48,13 +44,13 @@ resource "aws_vpc" "main" {
   enable_dns_hostnames = true
 
   tags {
-    Name = "${local.namespace}-vpc"
+    Name = "${var.namespace}-vpc"
   }
 }
 
 resource "aws_security_group" "main" {
-  name        = "${local.namespace}-sg"
-  description = "${local.namespace} security group"
+  name        = "${var.namespace}-sg"
+  description = "${var.namespace} security group"
 
   ingress {
     protocol    = "tcp"

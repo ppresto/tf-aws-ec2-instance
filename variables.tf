@@ -1,3 +1,8 @@
+variable "namespace" {
+  description = "default: us-west-2"
+  default     = "your-project-name"
+}
+
 variable "region" {
   description = "default: us-west-2"
   default     = "us-west-2"
@@ -15,7 +20,7 @@ variable "instance_type" {
 }
 
 variable "egress_cidr_block" {
-  description = "Outgoing Traffic trusted locations"
+  description = "Outgoing Traffic trusted locations (Default: 0.0.0.0/0)"
   type        = "string"
   default     = "0.0.0.0/0"
 }
