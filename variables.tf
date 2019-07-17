@@ -9,7 +9,7 @@ variable "public" {
 }
 
 variable "instance_type" {
-  description = "Your AWS SSH Key Name Here"
+  description = "instance size"
   type        = "string"
   default     = "t2.micro"
 }
