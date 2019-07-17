@@ -20,13 +20,13 @@ variable "instance_type" {
 }
 
 variable "egress_cidr_block" {
-  description = "Outgoing Traffic trusted locations (Default: 0.0.0.0/0)"
+  description = "Outgoing Traffic (Default: 0.0.0.0/0)"
   type        = "string"
   default     = "0.0.0.0/0"
 }
 
 variable "ingress_cidr_block" {
-  description = "Trusted Incoming Traffic cidr_block (EX: <YOUR_PUBLIC_IP>/32)"
+  description = "Trusted Incoming Traffic (EX: <YOUR_PUBLIC_IP>/32)\n WARNING: USING 0.0.0.0/0 IS INSECURE!"
   type        = "string"
   default     = "0.0.0.0/0"
 }
