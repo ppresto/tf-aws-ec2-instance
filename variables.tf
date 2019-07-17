@@ -26,7 +26,12 @@ variable "egress_cidr_block" {
 }
 
 variable "ingress_cidr_block" {
-  description = "Trusted Incoming Traffic (EX: <YOUR_PUBLIC_IP>/32)\n WARNING: USING 0.0.0.0/0 IS INSECURE!"
+  description = """
+  Trusted Incoming Traffic (EX: <YOUR_PUBLIC_IP>/32)
+
+  WARNING: USING 0.0.0.0/0 IS INSECURE!
+  
+  """
   type        = "string"
   default     = "0.0.0.0/0"
 }
