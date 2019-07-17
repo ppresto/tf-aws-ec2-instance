@@ -1,8 +1,15 @@
 variable "region" {
-  default = "us-west-2"
+  description = "default: us-west-2"
+  default     = "us-west-2"
 }
 
-variable "key_name" {
+variable "public" {
+  description = "Should instance be accessibly from outside (Boolean)"
+  default     = true
+}
+
+variable "instance_type" {
   description = "Your AWS SSH Key Name Here"
-  default     = ""
+  type        = "string"
+  default     = "t2.micro"
 }

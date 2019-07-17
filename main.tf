@@ -10,9 +10,9 @@ provider "aws" {
 # RESOURCE CONFIGURATION - AWS
 resource "aws_instance" "main" {
   ami                         = "${data.aws_ami.ubuntu.id}"
-  instance_type               = "m5.large"
+  instance_type               = "${var.instance_type}"
   key_name                    = "${module.ssh_keypair_module.name}"
-  associate_public_ip_address = true
+  associate_public_ip_address = "${var.public}"
   vpc_security_group_ids      = ["${aws_security_group.main.id}"]
   depends_on                  = ["aws_security_group.main"]
 
