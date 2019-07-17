@@ -10,7 +10,6 @@ module "instance_module" {
   version = "1.0.1"
 
   key_name = "${module.ssh_keypair_module.name}"
-  region = "us-west-2"
 }
 
 module "ssh_keypair_module" {
