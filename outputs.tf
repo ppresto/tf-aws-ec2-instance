@@ -2,6 +2,14 @@ output "public_ip" {
     value = "${aws_instance.main.public_ip}"
 }
 
-output "security_group_id" {
-  value = "${aws_security_group.main.id}"
+output "private_key_pem" {
+  value = "${module.ssh_keypair_module.private_key_name}"
+}
+
+output "public_key_pem" {
+  value = "${module.ssh_keypair_module.public_key_pem}"
+}
+
+output "aws_keypair_name" {
+  value = "${module.ssh_keypair_module.name}"
 }
