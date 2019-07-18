@@ -1,5 +1,6 @@
 variable "namespace" {
-  description = "Enter your name or unique description here (default: your-project-name)"
+  description = "Enter your name or unique description here."
+  default = ""
 }
 
 variable "region" {
