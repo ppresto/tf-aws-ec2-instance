@@ -3,7 +3,7 @@ output "public_ip" {
 }
 
 output "private_key_pem" {
-  value = "${module.ssh_keypair_module.private_key_name}"
+  value = "${module.ssh_keypair_module.private_key_pem}"
 }
 
 output "public_key_pem" {
