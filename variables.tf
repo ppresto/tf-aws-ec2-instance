@@ -1,6 +1,6 @@
 variable "namespace" {
   description = "Enter your name or unique description here."
-  default = ""
+  default     = ""
 }
 
 variable "region" {
@@ -26,10 +26,13 @@ variable "egress_cidr_block" {
 }
 
 variable "ingress_cidr_block" {
-  description = """
+  description = <<DESC
   Trusted Incoming Traffic (ex: <public.ipaddress>/32)
+
   WARNING: USING 0.0.0.0/0 IS INSECURE!
-  """
-  type        = "string"
-  default     = "0.0.0.0/0"
+  
+DESC
+
+  type    = "string"
+  default = "0.0.0.0/0"
 }
