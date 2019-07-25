@@ -17,7 +17,7 @@ resource "aws_instance" "main" {
   }
 
   tags {
-    Name  = "${var.namespace} instance"
+    Name  = "${var.name_prefix} instance"
     owner = "youremail@email.com"
     TTL   = 24
   }
@@ -44,13 +44,13 @@ resource "aws_vpc" "main" {
   enable_dns_hostnames = true
 
   tags {
-    Name = "${var.namespace}-vpc"
+    Name = "${var.name_prefix}-vpc"
   }
 }
 
 resource "aws_security_group" "main" {
-  name        = "${var.namespace}-sg"
-  description = "${var.namespace} security group"
+  name        = "${var.name_prefix}-sg"
+  description = "${var.name_prefix} security group"
 
   ingress {
     protocol    = "tcp"

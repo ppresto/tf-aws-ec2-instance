@@ -1,4 +1,4 @@
-variable "namespace" {
+variable "name_prefix" {
   description = "Enter your name or unique description here."
 }
 
@@ -25,13 +25,7 @@ variable "egress_cidr_block" {
 }
 
 variable "ingress_cidr_block" {
-  description = <<DESC
-  Trusted Incoming Traffic (ex: <public.ipaddress>/32)
-
-  WARNING: USING 0.0.0.0/0 IS INSECURE!
-
-DESC
-
-  type    = "string"
-  default = "0.0.0.0/0"
+  description = "WARNING: USING 0.0.0.0/0 IS INSECURE! (ex: <public.ipaddress>/32)"
+  type        = "string"
+  default     = "0.0.0.0/0"
 }
