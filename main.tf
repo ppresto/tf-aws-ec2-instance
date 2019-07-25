@@ -5,6 +5,7 @@ provider "aws" {
 
 # RESOURCE CONFIGURATION - AWS
 resource "aws_instance" "main" {
+  count                       = "${var.count}"
   ami                         = "${data.aws_ami.ubuntu.id}"
   instance_type               = "${var.instance_type}"
   key_name                    = "${module.ssh_keypair_module.name}"
@@ -18,7 +19,7 @@ resource "aws_instance" "main" {
 
   tags {
     Name  = "${var.name_prefix} instance"
-    owner = "youremail@email.com"
+    owner = "ppresto@hashicorp.com"
     TTL   = 24
   }
 }
