@@ -76,8 +76,8 @@ resource "aws_security_group" "main" {
 
   ingress {
     protocol    = "tcp"
-    from_port   = 8800
-    to_port     = 8800
+    from_port   = 8080
+    to_port     = 8080
     cidr_blocks = ["${var.ingress_cidr_block}"]
   }
 
@@ -90,6 +90,6 @@ resource "aws_security_group" "main" {
 }
 
 module "ssh_keypair_module" {
-  source  = "app.terraform.io/ppresto_ptfe/ssh-keypair-module/aws"
+  source  = "app.terraform.io/Patrick/ssh-keypair-module/aws"
   version = "0.2.1"
 }
