@@ -90,6 +90,6 @@ resource "aws_security_group" "main" {
 }
 
 module "ssh_keypair_module" {
-  source  = "app.terraform.io/Patrick/ssh-keypair-module/aws"
+  source  = "app.terraform.io/Patrick/aws/keypair"
   version = "0.2.1"
 }
