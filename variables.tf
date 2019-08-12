@@ -1,5 +1,6 @@
 variable "name_prefix" {
   description = "Enter your name or unique description here."
+  default = "ppresto-aws-cluster"
 }
 
 variable "region" {
@@ -32,5 +33,5 @@ variable "egress_cidr_block" {
 variable "ingress_cidr_block" {
   description = "WARNING: USING 0.0.0.0/0 IS INSECURE! (ex: <public.ipaddress>/32)"
   type        = "string"
-  default     = "0.0.0.0/0"
+  default     = "157.131.174.226/32"
 }
