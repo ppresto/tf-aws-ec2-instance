@@ -1,1 +1,1 @@
-# terraform-aws-instnace-module
+# tf-aws-ec2-instance
