@@ -1,6 +1,5 @@
 variable "name_prefix" {
   description = "Enter your name or unique project description here ( default: ppresto-dev-ec2 )"
-  default     = "ppresto-dev-ec2"
 }
 
 variable "region" {
@@ -65,4 +64,8 @@ variable "tfe_org" {
 variable "tfe_workspace" {
   description = "Enter the workspace managing your VPC ( default: tf-aws-standard-network )"
   default     = "tf-aws-standard-network"
+}
+
+variable "vpc_id" {
+  description = "Enter the workspace managing your VPC ( default: tf-aws-standard-network )"
 }

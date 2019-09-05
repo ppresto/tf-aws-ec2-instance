@@ -58,7 +58,7 @@ data "aws_ami" "ubuntu" {
 resource "aws_security_group" "app" {
   name_prefix = "${var.name_prefix}-sg"
   description = "${var.name_prefix} security group"
-  vpc_id      = "${data.terraform_remote_state.vpc.vpc_id}"
+  vpc_id      = "${var.vpc_id}"
   tags        = "${merge(var.tags, map("Name", format("%s-mynode", var.name_prefix)))}"
 }
 
