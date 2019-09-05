@@ -3,16 +3,16 @@ provider "aws" {
   region = "${var.region}"
 }
 
-# Get Network VPC Workspace Outputs
+# Get VPC
 data "terraform_remote_state" "vpc" {
   backend = "remote"
 
   config = {
-    hostname     = "${var.tfe_host}"
-    organization = "${var.tfe_org}"
+    hostname     = "app.terraform.io"
+    organization = "Patrick"
 
     workspaces = {
-      name = "${var.tfe_workspace}"
+      name = "tf-aws-standard-network"
     }
   }
 }
@@ -33,7 +33,7 @@ resource "aws_instance" "main" {
   }
 
   tags {
-    Name  = "${var.name_prefix}-${count.index}"
+    Name  = "${var.name_prefix} instance"
     owner = "ppresto@hashicorp.com"
     TTL   = 24
   }

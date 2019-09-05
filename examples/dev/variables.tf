@@ -1,6 +1,6 @@
 variable "name_prefix" {
-  description = "Enter your name or unique project description here ( default: ppresto-dev-ec2 )"
-  default     = "ppresto-dev-ec2"
+  description = "Enter your name or unique project description here."
+  default     = "ppresto-ec2-node"
 }
 
 variable "region" {
@@ -15,7 +15,7 @@ variable "public" {
 
 variable "count" {
   description = "# of Instances ( default=1 )"
-  default     = 2
+  default     = 1
 }
 
 variable "instance_type" {
@@ -50,19 +50,4 @@ variable "tags" {
   description = "Optional map of tags to set on resources, defaults to empty map."
   type        = "map"
   default     = {}
-}
-
-variable "tfe_host" {
-  description = "Enter your TFE host ( default: app.terraform.io )"
-  default     = "app.terraform.io"
-}
-
-variable "tfe_org" {
-  description = "Enter your TFE organization ( default: Patrick )"
-  default     = "Patrick"
-}
-
-variable "tfe_workspace" {
-  description = "Enter the workspace managing your VPC ( default: tf-aws-standard-network )"
-  default     = "tf-aws-standard-network"
 }
