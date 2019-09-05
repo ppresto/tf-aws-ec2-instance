@@ -11,17 +11,40 @@ vi variables.tf
 * Set a secure ingress CIDR block (ingress_cidr_block).  The default is unsecure (0.0.0.0)
 * If you want custom HTTP, and HTTP ports set the http variables (http_port, https_port)
 
-### TFE UI
-Build your personal workspace with AWS env variables, and terraform variables.
+### TFE CLI Demo
+Run the simple.sh to walk through setting up your env, building this ec2 instance, and cleaning everything up.
+```
+./simple.sh
+```
 
 Now Queue a Run.
 
-### TFE CLI
-**create your .terraformrc file to include your TFE credentials with apply privilages**
+### TFE UI
+Log into TFE and build or access the workspace you will use for this excersize
+
+1. Update your workspace with env/terraform variables defined
+2. Setup VCS connection to the repo that has your module code.  You can use ./simple/main.tf as a starting point.
+3. Queue a run
+   
+### TFE CLI (manual)
+1. create your .terraformrc file to include your TFE credentials with apply privilages**
+```
+export TERRAFORM_CONFIG=".terraformrc"
+export ATLAS_TOKEN="<YOUR_TFE_TOKEN>"
+
+cat <<- CONFIG > ./.terraformrc
+credentials "app.terraform.io" {
+  token = "${ATLAS_TOKEN}"
+}
+CONFIG
+```
+
+2. run terraform init, plan, apply
 ```
 terraform init
 terraform plan
 terraform apply -auto-approve
+#terraform destroy -auto-approve
 ```
 
 

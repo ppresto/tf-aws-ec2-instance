@@ -14,7 +14,7 @@ variable "public" {
 
 variable "count" {
   description = "# of Instances ( default=1 )"
-  default     = 2
+  default     = 1
 }
 
 variable "instance_type" {

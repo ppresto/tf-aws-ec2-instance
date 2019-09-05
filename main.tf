@@ -4,6 +4,15 @@ provider "aws" {
 }
 
 # Get Network VPC Workspace Outputs
+#
+#        All needed outputs could be obtained with this data source alone.  
+#        We added an additional variable below "var.vpc_id" to force/show interpolation input in the UI Config Designer
+#        Example UI Input: ${data.terraform_remote_state.tfeOrg_workspaceName.attribute}
+#
+#  BUG: The UI Configuration Designer appears to have a Bug in the generated data source output.  Add "https://" to the address.
+#       address = "https://app.terraform.io"
+#
+
 data "terraform_remote_state" "vpc" {
   backend = "remote"
 
