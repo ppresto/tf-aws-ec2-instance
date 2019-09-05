@@ -34,7 +34,7 @@ resource "aws_instance" "main" {
   key_name                    = "${data.terraform_remote_state.vpc.ssh_key_name}"
   associate_public_ip_address = "${var.public}"
   vpc_security_group_ids      = ["${aws_security_group.app.id}"]
-  subnet_id                   = "${data.terraform_remote_state.vpc.subnet_public_ids[0]}"
+  subnet_id                   = "${var.subnet_id}"
   depends_on                  = ["data.terraform_remote_state.vpc"]
 
   root_block_device {
@@ -68,7 +68,7 @@ resource "aws_security_group" "app" {
   count       = "${var.count > 0 ? 1 : 0}"
   name_prefix = "${var.name_prefix}-sg"
   description = "${var.name_prefix} security group"
-  vpc_id      = "${var.vpc_id}"
+  vpc_id      = "${data.terraform_remote_state.vpc.vpc_id}"
   tags        = "${merge(var.tags, map("Name", format("%s-mynode", var.name_prefix)))}"
 }
 

@@ -66,6 +66,6 @@ variable "tfe_workspace" {
   default     = "tf-aws-standard-network"
 }
 
-variable "vpc_id" {
-  description = "Enter the workspace managing your VPC ( default: tf-aws-standard-network )"
+variable "subnet_id" {
+  description = "Enter the subnet_id your nodes should be deployed to (Required Input)"
 }
