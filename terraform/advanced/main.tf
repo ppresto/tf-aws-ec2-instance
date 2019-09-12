@@ -12,7 +12,7 @@ data "terraform_remote_state" "patrick_tf_aws_standard_network" {
 // Modules
 module "ec2_instance" {
   source  = "app.terraform.io/Patrick/ec2_instance/aws"
-  version = "0.1.3"
+  version = "0.1.5"
   name_prefix = "ppresto2-dev"
   vpc_id = "${data.terraform_remote_state.patrick_tf_aws_standard_network.vpc_id}"
 
