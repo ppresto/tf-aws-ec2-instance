@@ -13,6 +13,6 @@ data "terraform_remote_state" "patrick_tf_aws_standard_network" {
 module "ec2_instance" {
   source  = "app.terraform.io/Patrick/ec2_instance/aws"
   version = "0.1.6"
-  name_prefix = "ppresto2-dev"
+  name_prefix = "${var.name_prefix}"
   securitygroup_id = "${data.terraform_remote_state.patrick_tf_aws_standard_network.webapp_security_group}"
 }
