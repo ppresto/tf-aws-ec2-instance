@@ -68,5 +68,4 @@ variable "tfe_workspace" {
 
 variable "securitygroup_id" {
   description = "Enter the subnet_id your nodes should be deployed to (Required Input)"
-  default = "default"
 }
