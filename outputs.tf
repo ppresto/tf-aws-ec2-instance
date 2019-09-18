@@ -1,13 +1,5 @@
-output "public_key_pem" {
-  value = "${data.terraform_remote_state.vpc.public_key_pem}"
-}
-
-output "private_key_filename" {
-  value = "${data.terraform_remote_state.vpc.private_key_filename}"
-}
-
 output "private_key_pem" {
-  value = "${data.terraform_remote_state.vpc.private_key_pem}"
+  value = "${data.terraform_remote_state.vpc.ssh_key_private_pem}"
 }
 
 output "my_nodes_public_ips" {
