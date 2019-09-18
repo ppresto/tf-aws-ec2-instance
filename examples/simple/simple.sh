@@ -9,7 +9,7 @@ if [[ -z ${DEMO_WAIT} ]];then
 fi
 
 # Demo magic gives wrappers for running commands in demo mode.   Also good for learning via CLI.
-. ${DIR}/../../demo-magic.sh -d -p -w ${DEMO_WAIT}
+. ${DIR}/demo-magic.sh -d -p -w ${DEMO_WAIT}
 
 source $HOME/awsSetEnv.sh
 
@@ -24,13 +24,29 @@ fi
 if [[ ! -z ${APP_TFE_TOKEN} && ! -z ${ATLAS_TOKEN} ]]; then
   ATLAS_TOKEN=${APP_TFE_TOKEN} 
 fi
+echo
+lblue "############################################"
+lcyan "  Use Remote TFE Workspace Outputs Locally"
+lblue "############################################"
+echo
+cyan "#"
+cyan "### Review the terraform main.tf"
+cyan "#"
+p ""
+echo
+cat main.tf
+p ""
+echo
+cyan "#"
+cyan "### Create .terraformrc file with your TFE credentials"
+cyan "#"
+echo
+p "# .terraformrc :
 
-cyan "Create .terraformrc file with your TFE credentials"
-p "cat <<- CONFIG > ./.terraformrc
 credentials \"app.terraform.io\" {
   token = "xxxxxxx"
 }
-CONFIG"
+"
 
 # Create .terraformrc to enable TFE backend
 cat <<- CONFIG > ${DIR}/.terraformrc
@@ -39,15 +55,14 @@ credentials "app.terraform.io" {
 }
 CONFIG
 
-cyan "Initialize your remote backend with 'terraform init'"
+cyan "#"
+cyan "### Initialize your remote backend with 'terraform init'"
+cyan "#"
+echo
 pe "terraform init"
 
-cyan "Run Terraform apply"
-pe "terraform apply -auto-approve"
-
-cyan "Run Terraform destroy"
-pe "terraform destroy -auto-approve"
+cyan "Run Terraform"
+pe "terraform plan -var name_prefix=ppresto-dev-ec2"
 
 # clean up sensitive files
 rm -rf ${DIR}/.terraform*
-rm ${DIR}/*.tfstate*

@@ -33,7 +33,7 @@ resource "aws_instance" "main" {
   instance_type               = "${var.instance_type}"
   key_name                    = "${data.terraform_remote_state.vpc.ssh_key_name}"
   associate_public_ip_address = "${var.public}"
-  vpc_security_group_ids      = ["${var.securitygroup_id}"]
+  vpc_security_group_ids      = ["${var.security_group}"]
   subnet_id                   = "${data.terraform_remote_state.vpc.subnet_public_ids[0]}"
   depends_on                  = ["data.terraform_remote_state.vpc"]
 
@@ -62,52 +62,4 @@ data "aws_ami" "ubuntu" {
   }
 
   owners = ["099720109477"]
-}
-
-resource "aws_security_group" "app" {
-  count       = "${var.count > 0 ? 1 : 0}"
-  name_prefix = "${var.name_prefix}-sg"
-  description = "${var.name_prefix} security group"
-  vpc_id      = "${data.terraform_remote_state.vpc.vpc_id}"
-  tags        = "${merge(var.tags, map("Name", format("%s-mynode", var.name_prefix)))}"
-}
-
-resource "aws_security_group_rule" "ssh" {
-  count       = "${var.count > 0 ? 1 : 0}"
-  security_group_id = "${aws_security_group.app.id}"
-  type              = "ingress"
-  protocol          = "tcp"
-  from_port         = 22
-  to_port           = 22
-  cidr_blocks       = ["${var.ingress_cidr_block}"]
-}
-
-resource "aws_security_group_rule" "http" {
-  count       = "${var.count > 0 ? 1 : 0}"
-  security_group_id = "${aws_security_group.app.id}"
-  type              = "ingress"
-  protocol          = "tcp"
-  from_port         = "${var.http_port}"
-  to_port           = "${var.http_port}"
-  cidr_blocks       = ["${var.ingress_cidr_block}"]
-}
-
-resource "aws_security_group_rule" "https" {
-  count       = "${var.count > 0 ? 1 : 0}"
-  security_group_id = "${aws_security_group.app.id}"
-  type              = "ingress"
-  protocol          = "tcp"
-  from_port         = "${var.https_port}"
-  to_port           = "${var.https_port}"
-  cidr_blocks       = ["${var.ingress_cidr_block}"]
-}
-
-resource "aws_security_group_rule" "egress" {
-  count       = "${var.count > 0 ? 1 : 0}"
-  security_group_id = "${aws_security_group.app.id}"
-  type              = "egress"
-  protocol          = "-1"
-  from_port         = 0
-  to_port           = 0
-  cidr_blocks       = ["${var.ingress_cidr_block}"]
 }

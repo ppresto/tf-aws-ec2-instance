@@ -66,6 +66,6 @@ variable "tfe_workspace" {
   default     = "tf-aws-standard-network"
 }
 
-variable "securitygroup_id" {
-  description = "Enter the subnet_id your nodes should be deployed to (Required Input)"
+variable "security_group" {
+  description = "Enter the security group you want applied to your instances"
 }
