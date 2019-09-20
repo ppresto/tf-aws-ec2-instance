@@ -61,8 +61,23 @@ cyan "#"
 echo
 pe "terraform init"
 
-cyan "Run Terraform"
+echo
+cyan "#"
+cyan "### Run Terraform Plan"
+cyan "#"
 pe "terraform plan -var name_prefix=ppresto-dev-ec2"
 
+echo
+cyan "#"
+cyan "### Run Terraform Apply"
+cyan "#"
+pe "terraform apply -var name_prefix=ppresto-dev-ec2 -auto-approve"
+
+echo
+cyan "#"
+cyan "### Run Terraform Destroy"
+cyan "#"
+terraform destroy -var name_prefix=ppresto-dev-ec2 -auto-approve
+
 # clean up sensitive files
-rm -rf ${DIR}/.terraform*
+rm -rf ${DIR}/.terraform* ${DIR}/*tfstate*

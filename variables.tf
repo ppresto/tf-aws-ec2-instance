@@ -1,5 +1,5 @@
 variable "name_prefix" {
-  description = "Enter your name or unique project description here ( default: ppresto-dev-ec2 )"
+  description = "Enter your name or unique project description here ( ex: ppresto-dev-ec2 )"
 }
 
 variable "region" {
