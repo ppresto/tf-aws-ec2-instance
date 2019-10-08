@@ -1,5 +1,5 @@
 output "private_key_pem" {
-  value = "${data.terraform_remote_state.vpc.ssh_key_private_pem}"
+  value = "${data.terraform_remote_state.vpc.outputs.ssh_key_private_pem}"
 }
 
 output "my_nodes_public_ips" {
@@ -7,5 +7,5 @@ output "my_nodes_public_ips" {
 }
 
 output "my_bastion_public_ips" {
-  value = "${data.terraform_remote_state.vpc.bastion_ips_public}"
+  value = "${data.terraform_remote_state.vpc.outputs.bastion_ips_public}"
 }
