@@ -39,7 +39,7 @@ resource "aws_instance" "main" {
   key_name                    = data.terraform_remote_state.vpc.outputs.ssh_key_name
   associate_public_ip_address = var.public
   #vpc_security_group_ids      = [var.security_group]
-  vpc_security_group_ids      = data.terraform_remote_state.vpc.outputs.security_group_web
+  vpc_security_group_ids      = [data.terraform_remote_state.vpc.outputs.security_group_web]
   subnet_id                   = data.terraform_remote_state.vpc.outputs.subnet_public_ids[0]
   depends_on                  = ["data.terraform_remote_state.vpc"]
   
