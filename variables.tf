@@ -12,11 +12,6 @@ variable "public" {
   default     = true
 }
 
-variable "count" {
-  description = "# of Instances ( default=1 )"
-  default     = 1
-}
-
 variable "instance_type" {
   description = "Select Instance Size (default: t2.micro)"
   type        = "string"
