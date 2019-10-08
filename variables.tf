@@ -63,5 +63,4 @@ variable "tfe_workspace" {
 
 variable "security_group" {
   description = "Enter the security group you want applied to your instances"
-  default = "remove"
 }
