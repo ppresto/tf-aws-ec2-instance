@@ -33,16 +33,17 @@ data "aws_ami" "ubuntu" {
 }
 
 resource "aws_instance" "main" {
+  count                       = "${var.instance_count != "" ? var.instance_count : 0}"
   ami                         = data.aws_ami.ubuntu.id
   instance_type               = var.instance_type
   key_name                    = data.terraform_remote_state.vpc.outputs.ssh_key_name
   associate_public_ip_address = var.public
   vpc_security_group_ids      = [var.security_group]
-  subnet_id                   = data.terraform_remote_state.vpc.outputs.subnet_public_ids[0]
+  subnet_id                   = "${var.subnetid != "" ? var.subnetid : data.terraform_remote_state.vpc.outputs.subnet_public_ids[0]}"
   depends_on                  = ["data.terraform_remote_state.vpc"]
   
   tags = {
-    Name  = "${var.name_prefix}"
+    Name  = "${var.name_prefix}_${count.index+1}"
     owner = "ppresto@hashicorp.com"
     TTL   = 24
   }

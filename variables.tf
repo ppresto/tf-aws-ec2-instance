@@ -64,3 +64,14 @@ variable "tfe_workspace" {
 variable "security_group" {
   description = "Enter the security group you want applied to your instances"
 }
+
+variable "subnetid" {
+  description = "Subnet ID (default = subnet_public_ids[0]"
+  default = ""
+}
+
+variable "instance_count" {
+  description = "Number of instances to build"
+  default = 1
+}
+
