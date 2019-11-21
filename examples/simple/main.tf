@@ -2,7 +2,7 @@
 // Workspace Data
 data "terraform_remote_state" "patrick_tf_aws_standard_network" {
   backend = "atlas"
-  config {
+  config = {
     address = "https://app.terraform.io"
     name    = "Patrick/tf-aws-standard-network"
   }
@@ -11,9 +11,9 @@ data "terraform_remote_state" "patrick_tf_aws_standard_network" {
 //--------------------------------------------------------------------
 // Modules
 module "ec2_instance" {
-  source  = "app.terraform.io/Patrick/ec2_instance/aws"
-  version = "0.1.8"
-  count  = 1
+  #source  = "app.terraform.io/Patrick/ec2_instance/aws"
+  source  = "../../../tf-aws-ec2-instance"
+  #version = "2.0.1"
   name_prefix = "${var.name_prefix}"
-  security_group = "${data.terraform_remote_state.patrick_tf_aws_standard_network.security_group_web}"
+  security_group = "${data.terraform_remote_state.patrick_tf_aws_standard_network.outputs.security_group_web}"
 }
