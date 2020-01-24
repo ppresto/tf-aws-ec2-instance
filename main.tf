@@ -41,10 +41,5 @@ resource "aws_instance" "main" {
   vpc_security_group_ids      = [var.security_group]
   subnet_id                   = "${var.subnetid != "" ? var.subnetid : data.terraform_remote_state.vpc.outputs.subnet_public_ids[0]}"
   depends_on                  = ["data.terraform_remote_state.vpc"]
-  
-  tags = {
-    Name  = "${var.name_prefix}_${count.index+1}"
-    owner = "ppresto@hashicorp.com"
-    TTL   = 24
-  }
+  tags                        = "${merge(map("Name", "${var.name_prefix}_${count.index+1}"), var.tags)}"
 }
